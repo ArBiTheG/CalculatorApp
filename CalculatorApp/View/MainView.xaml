@@ -1,0 +1,87 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CalculatorApp.View"
+             xmlns:utils="clr-namespace:CalculatorApp.Utils"
+             xmlns:ViewModel="clr-namespace:CalculatorApp.ViewModel" x:Class="CalculatorApp.View.MainView"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800" Loaded="UserControl_Loaded" SizeChanged="UserControl_SizeChanged">
+    <UserControl.DataContext>
+        <ViewModel:MainViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"/>
+                <RowDefinition Height="5*"/>
+            </Grid.RowDefinitions>
+            <Border Grid.Row="0" Margin="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Label VerticalContentAlignment="Center" HorizontalContentAlignment="Right">
+                        <TextBlock Grid.Row="0" Text="{Binding FormulaStr}" d:Text="Формула"/>
+                    </Label>
+                    <TextBox Grid.Row="1" Text="{Binding NumberStr}" d:Text="Число" VerticalContentAlignment="Center" HorizontalContentAlignment="Right" FontSize="24" IsReadOnly="True" BorderThickness="0"/>
+                </Grid>
+            </Border>
+            <Border Grid.Row="1" Margin="2">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                        <RowDefinition/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                        <ColumnDefinition x:Name="historyColumn" Width="2*"/>
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="1" Grid.Row="3" Margin="1" FontSize="20" Content="1" x:Name="btnKey1" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key1}"/>
+                    <Button Grid.Column="2" Grid.Row="3" Margin="1" FontSize="20" Content="2" x:Name="btnKey2" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key2}"/>
+                    <Button Grid.Column="3" Grid.Row="3" Margin="1" FontSize="20" Content="3" x:Name="btnKey3" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key3}"/>
+                    <Button Grid.Column="1" Grid.Row="2" Margin="1" FontSize="20" Content="4" x:Name="btnKey4" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key4}"/>
+                    <Button Grid.Column="2" Grid.Row="2" Margin="1" FontSize="20" Content="5" x:Name="btnKey5" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key5}"/>
+                    <Button Grid.Column="3" Grid.Row="2" Margin="1" FontSize="20" Content="6" x:Name="btnKey6" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key6}"/>
+                    <Button Grid.Column="1" Grid.Row="1" Margin="1" FontSize="20" Content="7" x:Name="btnKey7" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key7}"/>
+                    <Button Grid.Column="2" Grid.Row="1" Margin="1" FontSize="20" Content="8" x:Name="btnKey8" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key8}"/>
+                    <Button Grid.Column="3" Grid.Row="1" Margin="1" FontSize="20" Content="9" x:Name="btnKey9" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key9}"/>
+                    <Button Grid.Column="1" Grid.Row="4" Margin="1" FontSize="20" Content="0" x:Name="btnKey0" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.Key0}"/>
+                    <Button Grid.Column="2" Grid.Row="4" Margin="1" FontSize="20" Content="," x:Name="btnKeyDot" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyDot}"/>
+                    <Button Grid.Column="4" Grid.Row="1" Margin="1" FontSize="20" Content="/" x:Name="btnKeyDivide" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyDivide}"/>
+                    <Button Grid.Column="4" Grid.Row="2" Margin="1" FontSize="20" Content="*" x:Name="btnKeyMultiply" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyMultiply}"/>
+                    <Button Grid.Column="4" Grid.Row="3" Margin="1" FontSize="20" Content="-" x:Name="btnKeyMinus" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyMinus}"/>
+                    <Button Grid.Column="4" Grid.Row="4" Margin="1" FontSize="20" Content="+" x:Name="btnKeyPlus" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyPlus}"/>
+                    <Button Grid.Column="3" Grid.Row="4" Margin="1" FontSize="20" Content="=" x:Name="btnKeyEqually" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyEqually}"/>
+                    <Button Grid.Column="4" Grid.Row="0" Margin="1" FontSize="20" Content="CE" x:Name="btnKeyDelete" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyDelete}"/>
+                    <Button Grid.Column="3" Grid.Row="0" Margin="1" FontSize="20" Content="С" x:Name="btnKeyClear" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyClear}"/>
+                    <Button Grid.Column="2" Grid.Row="0" Margin="1" FontSize="20" Content="AС" x:Name="btnKeyAllClear" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyAllClear}"/>
+                    <Button Grid.Column="0" Grid.Row="4" Margin="1" FontSize="20" Content="+/-" x:Name="btnKeyReverse" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyReverse}"/>
+                    <Button Grid.Column="0" Grid.Row="3" Margin="1" FontSize="20" Content="%" x:Name="btnKeyPercent" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeyPercent}"/>
+                    <Button Grid.Column="0" Grid.Row="2" Margin="1" FontSize="20" Content="Корень квадратный" x:Name="btnKeySquareRoot" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeySquareRoot}"/>
+                    <Button Grid.Column="0" Grid.Row="1" Margin="1" FontSize="20" Content="Квадрат" x:Name="btnKeySquare" Command="{Binding InputCommand, Mode=OneWay}" CommandParameter="{x:Static utils:CalcKey.KeySquare}"/>
+                    <TextBlock Grid.Column="5" Grid.Row="0" Text="История операций:" VerticalAlignment="Bottom"/>
+                    <ListBox Grid.Column="5" Grid.Row="1" Grid.RowSpan="4"  Margin="2" ItemsSource="{Binding OperationHistory}">
+                        <ListBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock Text="{Binding Formula}"/>
+                                    <TextBlock FontSize="18" Text="{Binding Value}"/>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListBox.ItemTemplate>
+                    </ListBox>
+                </Grid>
+            </Border>
+        </Grid>
+    </Grid>
+</UserControl>
